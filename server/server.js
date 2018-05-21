@@ -5,6 +5,8 @@ var http = require('http').Server(app);
 const port = process.env.PORT || 8080;
 
 app.use(express.static('../frontend'));
+app.use('/blog', express.static('../blog/public'));
+
 
 http.listen(port, function(){
   console.log(`hello.\nlistening on ${port}.`);
