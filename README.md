@@ -3,6 +3,7 @@ Singing website
 
 ## todo
 1. diary app
+1. link to .com domain
 1. contact form
 1. style main site (about, diary, contact)
 1. write blog post
