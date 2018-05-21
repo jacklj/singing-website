@@ -11,7 +11,3 @@ app.use('/blog', express.static('../blog/public'));
 http.listen(port, function(){
   console.log(`hello.\nlistening on ${port}.`);
 });
-
-app.get('/', function (req, res) {
-  res.send("__hi__");
-});
