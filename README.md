@@ -3,8 +3,6 @@ Singing website
 
 ## todo
 1. diary app
-   - make pgdb data model
-   - make endpoint to getAll events
    - display in react app
    - make create, edit, delete endpoints
    - then can generate admin interface to easily add events, using https://marmelab.com/react-admin, if necessary
@@ -13,3 +11,8 @@ Singing website
 1. style main site (about, diary, contact)
 1. write blog post
 1. style blog post
+
+
+## done
+- make pgdb data model
+- make endpoint to getAll events
