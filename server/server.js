@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 const path = require('path');
+const knex = require('./db/knex.js');
 
 const port = process.env.PORT || 8080;
 
@@ -14,4 +15,10 @@ app.use('/blog', express.static(blogStaticDir));
 
 http.listen(port, function(){
   console.log(`hello.\nlistening on ${port}.`);
+});
+
+app.get('/events', function(req, res, next) {
+  knex('events').select()
+    .then(events => res.status(200).json(events))
+    .catch(error => console.warn(error));
 });
