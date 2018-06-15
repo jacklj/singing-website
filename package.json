@@ -1,9 +1,17 @@
 {
-  "scripts": {
-    "postinstall": "npm install && cd server && npm install && cd ..",
-    "start": "node server/server.js"
-  },
+  "name": "jacklj-website-server",
+  "version": "1.0.0",
+  "description": "Server for my website",
+  "author": "Jack Lawrence-Jones <jackvlj@gmail.com>",
+  "license": "MIT",
+  "main": "server.js",
   "dependencies": {
-    "knex": "^0.14.6"
+    "express": "^4.16.3",
+    "knex": "^0.14.6",
+    "moment": "^2.22.1",
+    "pg": "^7.4.3"
+  },
+  "scripts": {
+    "start": "node server.js"
   }
 }
