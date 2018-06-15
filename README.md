@@ -3,6 +3,7 @@ Singing website
 
 ## todo
 1. get database working on heroku https://devcenter.heroku.com/articles/heroku-postgresql
+   - cant run knex commands. this may be because knex not installed in top level dir. So i installed it in top level dir, modified postinstall script to do npm install in bot dop level dir and /server, but then this seems to have caused an infinite loop in heroku deployment. Ive removed the github watch pipe thing as i read somewhere that could be it. Want to try and deploy again, but i cant stop the current looping deployment - need to wait for it to timeout.
 1. run knex seed on heroku
 1. contact form https://tylerkrys.ca/blog/adding-nodemailer-email-contact-form-node-express-app
 1. image on each page
