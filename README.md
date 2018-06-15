@@ -2,10 +2,6 @@
 Singing website
 
 ## todo
-1. get database working on heroku https://devcenter.heroku.com/articles/heroku-postgresql
-   - cant run knex commands. this may be because knex not installed in top level dir. So i installed it in top level dir, modified postinstall script to do npm install in bot dop level dir and /server, but then this seems to have caused an infinite loop in heroku deployment. Ive removed the github watch pipe thing as i read somewhere that could be it. Want to try and deploy again, but i cant stop the current looping deployment - need to wait for it to timeout.
-   That didnt work - seems like its the postinstall command. Lets restructure: move the frontend stuff inside the server folder, and make the server folder the top level folder. Should mean simpler deployment etc
-1. run knex seed on heroku
 1. contact form https://tylerkrys.ca/blog/adding-nodemailer-email-contact-form-node-express-app
 1. image on each page
 1. add date/time display logic to events (base it off your python code)
@@ -30,3 +26,10 @@ then basic website is up :)
 - make pgdb data model
 - make endpoint to getAll events
 - display events on diary page
+- fix heroku installation: the postinstall script loops forever
+  - this was because it had `npm install` in it, which then triggered another postinstall
+  - only needed the postinstall because of the project directory structure: the server dir was inside a top level dir: I flattened the structure so the server is top level - easier when working with heroku
+- get database working on heroku https://devcenter.heroku.com/articles/heroku-postgresql
+   - check that the heroku config is being correctly loaded - yes
+   - simplify knex config - worked :)
+1. run knex seed on heroku
