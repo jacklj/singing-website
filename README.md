@@ -2,10 +2,9 @@
 Singing website
 
 ## todo
-1. contact form https://tylerkrys.ca/blog/adding-nodemailer-email-contact-form-node-express-app
-1. image on each page
-1. add date/time display logic to events (base it off your python code)
 1. add all current events to knex seed file
+1. add date/time display logic to events (base it off your python code)
+1. contact form works on heroku
 1. check all working on heroku
 1. link to .com domain
 
@@ -33,3 +32,5 @@ then basic website is up :)
    - check that the heroku config is being correctly loaded - yes
    - simplify knex config - worked :)
 1. run knex seed on heroku
+1. contact form working locally https://tylerkrys.ca/blog/adding-nodemailer-email-contact-form-node-express-app
+1. image on each page
