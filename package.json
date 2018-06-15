@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "postinstall": "cd server && npm install && cd ..",
+    "postinstall": "npm install && cd server && npm install && cd ..",
     "start": "node server/server.js"
   },
   "dependencies": {
