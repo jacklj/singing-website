@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <title>Jack Lawrence Jones | Baritone</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+  </head>
+  <body onload="onBodyLoad();">
+    <div class="container">
+      <h1>Jack Lawrence-Jones | Baritone</h1>
+      <ul class="navigation">
+        <li class="current"><a href="./about.html">about</a></li>
+        <li><a href="./diary.html">diary</a></li>
+        <li><a href="./contact.html">contact</a></li>
+      </ul>
+      <h2>Diary</h2>
+      <div id="events">
+      </div>
+    </div>
+    <script>
+    // onpageload, get events, sort in reverse chronological order,
+    // and display in the 'diary' div
+
+    function reverseChronologicalSort(a,b) {
+      return new Date(b.start) - new Date(a.start);
+    }
+
+    function createEventElement(event) {
+      // event.copy
+      // event.end
+      // event.id
+      // event.name
+      // event.start
+      // event.venue_address
+      // event.venue_name
+      // event.venue_website
+
+      var eventElement = document.createElement('div');
+      eventElement.className = 'event';
+      eventElement.innerHTML = `
+      <div>${event.name}</div>
+      <div>${event.start} - ${event.end}</div>
+      <div>${event.venue_website ? `<a href="${event.venue_website}">` : ''}${event.venue_name}${event.venue_website ? '<\a>' : ''}</div>
+      <div>${event.venue_address}</div>
+      <div>${event.copy}</div>
+      `;
+
+      return eventElement;
+    }
+
+    function onBodyLoad() {
+      console.log("body just loaded!!")
+      const eventsContainer = document.getElementById('events');
+
+      var events;
+      var request = new XMLHttpRequest();
+      request.open('GET', '/events', true);
+      request.onload = function() {
+        if(request.status >= 200) {
+          events = JSON.parse(request.responseText);
+          events.sort(reverseChronologicalSort);
+          console.log(events);
+
+          for (var i = 0, len = events.length; i < len; i++) {
+            var eventElement = createEventElement(events[i]);
+            eventsContainer.appendChild(eventElement);
+          }
+
+        } else {
+          console.warn("error")
+        }
+      }
+
+      request.onerror = function(error) {
+        console.warn(error);
+      };
+
+      request.send();
+    }
+    </script>
+  </body>
+</html>
