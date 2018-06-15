@@ -2,11 +2,13 @@
 Singing website
 
 ## todo
+1. get database working on heroku https://devcenter.heroku.com/articles/heroku-postgresql
+1. run knex seed on heroku
 1. contact form https://tylerkrys.ca/blog/adding-nodemailer-email-contact-form-node-express-app
 1. image on each page
 1. add date/time display logic to events (base it off your python code)
 1. add all current events to knex seed file
-1. check all working on heroku (esp postgres database, as dont think i got it working before)
+1. check all working on heroku
 1. link to .com domain
 
 then basic website is up :)
