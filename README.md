@@ -9,6 +9,8 @@ Singing website
 then basic website is up :)
 
 ## next
+1. when you send a message, proper visual feedback (stay on page etc)
+1. remove .html from path names
 1. home page in navigation
 1. remove github static site build thing
 1. make soundcloud for recordings, upload >= 1
