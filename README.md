@@ -2,13 +2,7 @@
 Singing website
 
 ## todo
-1. contact form works on heroku - need to put credentials in config
-1. check all working on heroku
-1. link to .com domain
-
-then basic website is up :)
-
-## next
+1. fix knex seed so it doesnt always fail first time - make deletions synchronous (delete venues, then productions, then shows (i think), to avoid foreign key problems)
 1. when you send a message, proper visual feedback (stay on page etc)
 1. remove .html from path names
 1. home page in navigation
@@ -48,3 +42,6 @@ then basic website is up :)
 1. style contact form
 1. longer biog on about page
 1. different picture on about page
+1. contact form works on heroku - need to put credentials in config
+1. check all working on heroku
+1. link to .com domain -> then basic website is up :)
