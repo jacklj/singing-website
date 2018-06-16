@@ -60,7 +60,6 @@ exports.seed = function(knex, Promise) {
       ]);
     })
     .then(function(values) {
-      console.log(values);
       const magicFluteId = values[0][0].id; // have to drill down into result array then object
       const garsingtonVenueId = values[1][0].id;
       return knex('shows').insert([
@@ -121,7 +120,6 @@ exports.seed = function(knex, Promise) {
       ]);
     })
     .then(function(values) {
-      console.log(values);
       const capriccioId = values[0][0].id; // have to drill down into result array then object
       const garsingtonVenueId = values[1][0].id;
       return knex('shows').insert([
@@ -152,7 +150,6 @@ exports.seed = function(knex, Promise) {
       ]);
     })
     .then(function(values) {
-      console.log(values);
       const falstaffId = values[0][0].id; // have to drill down into result array then object
       const garsingtonVenueId = values[1][0].id;
       return knex('shows').insert([
@@ -225,7 +222,6 @@ exports.seed = function(knex, Promise) {
       ]);
     })
     .then(function(values) {
-      console.log(values);
       const creationId = values[0][0].id; // have to drill down into result array then object
       const maldonChoralVenueId = values[1][0].id;
       return knex('shows').insert([
