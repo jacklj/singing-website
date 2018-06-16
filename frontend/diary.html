@@ -30,20 +30,20 @@
 
     function createEventElement(event) {
       // format date/time
-      var start = moment(event.start).tz("Europe/London");
-      var end = moment(event.end).tz("Europe/London");
+      var start = moment(event.start);
+      var end = moment(event.end);
       var dateHtml;
       console.log(start.isDST());
       if(start.isSame(end, 'day')) {
         // same day start and finish: ie a normal concert.
         // Display e.g. 7:30pm - 10pm, Saturday 7th January 2018
-        var startTime = start.format('h:mm a');
-        var endTime = end.format('h:mm a');
-        var date = end.format('dddd Do MMMM, YYYY');
+        var startTime = start.tz("Europe/London").format('h:mm a');
+        var endTime = end.tz("Europe/London").format('h:mm a');
+        var date = end.tz("Europe/London").format('dddd Do MMMM, YYYY');
         dateHtml = `${startTime} - ${endTime}, ${date}`
       } else {
-        var startDate = start.format('h:mm a, dddd Do MMMM, YYYY');
-        var endDate = end.format('h:mm a, dddd Do MMMM, YYYY');
+        var startDate = start.tz("Europe/London").format('h:mm a, dddd Do MMMM, YYYY');
+        var endDate = end.tz("Europe/London").format('h:mm a, dddd Do MMMM, YYYY');
         dateHtml =`${startDate} - ${endDate}`;
       }
 
