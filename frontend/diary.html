@@ -16,6 +16,8 @@
       <div id="events">
       </div>
     </div>
+
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
     <script>
     // onpageload, get events, sort in reverse chronological order,
     // and display in the 'diary' div
@@ -25,22 +27,31 @@
     }
 
     function createEventElement(event) {
-      // event.copy
-      // event.end
-      // event.id
-      // event.name
-      // event.start
-      // event.venue_address
-      // event.venue_name
-      // event.venue_website
+      // format date/time
+      var start = moment(event.start);
+      var end = moment(event.end);
+      var dateHtml;
+      if(start.isSame(end, 'day')) {
+        // same day start and finish: ie a normal concert.
+        // Display e.g. 7:30pm - 10pm, Saturday 7th January 2018
+        var startTime = start.format('h:mm a');
+        var endTime = end.format('h:mm a');
+        var date = end.format('dddd Do MMMM, YYYY');
+        dateHtml = `${startTime} - ${endTime}, ${date}`
+      } else {
+        var startDate = start.format('h:mm a, dddd Do MMMM, YYYY');
+        var endDate = end.format('h:mm a, dddd Do MMMM, YYYY');
+        dateHtml =`${startDate} - ${endDate}`;
+      }
 
       var eventElement = document.createElement('div');
       eventElement.className = 'event';
       eventElement.innerHTML = `
-      <div>${event.name}</div>
-      <div>${event.start} - ${event.end}</div>
-      <div>${event.venue_website ? `<a href="${event.venue_website}">` : ''}${event.venue_name}${event.venue_website ? '<\a>' : ''}</div>
-      <div>${event.venue_address}</div>
+      <div>${event.url ? `<a href="${event.url}">` : ''}${event.name}${event.url ? '<\a>' : ''}</div>
+      <div>${event.venue_website ? `<a href="${event.venue_website}">` : ''}${event.company}${event.venue_website ? '<\a>' : ''}</div>
+      <div>${dateHtml}</div>
+      <div>${event.venue_name}, ${event.venue_address}</div>
+      <div>${event.my_role}</div>
       <div>${event.copy}</div>
       `;
 
