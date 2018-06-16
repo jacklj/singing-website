@@ -22,7 +22,10 @@ http.listen(port, function(){
 });
 
 app.get('/events', function(req, res, next) {
-  knex('events').select()
+  knex('shows')
+    .join('productions', 'shows.production_id', 'productions.id')
+    .join('venues', 'shows.venue_id', 'venues.id')
+    .select()
     .then(events => res.status(200).json(events))
     .catch(error => console.warn(error));
 });
