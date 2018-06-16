@@ -4,9 +4,9 @@ Singing website
 ## todo
 1. make tables
    - a production (name, copy, my_role)
-   - has multiple events (start, finish, FK to venue, FK to production)
+   - has multiple shows (start, finish, FK to venue, FK to production)
    - venues have website, address
-add all current events to knex seed file
+1. add all current events to knex seed file
 1. add date/time display logic to events (base it off your python code)
   - install moment on frontend for easy date comparison
   - if same day, display: startTime - endTime, Date
