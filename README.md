@@ -2,14 +2,11 @@
 Singing website
 
 ## todo
-1. add date/time display logic to events (base it off your python code)
-  - install moment on frontend for easy date comparison
-  - if same day, display: startTime - endTime, Date
-  - if show run, display them individually with details repeated
-1. contact form works on heroku
+1. longer biog on about page
+1. different picture on about page
+1. contact form works on heroku - need to put credentials in config
 1. check all working on heroku
 1. link to .com domain
-
 
 then basic website is up :)
 
@@ -44,3 +41,7 @@ then basic website is up :)
    - venues have website, address
 1. add all current events to knex seed file
 1. All events endpoint generates list of all events
+1. add date/time display logic to events (base it off your python code)
+  - install moment on frontend for easy date comparison
+  - if same day, display: startTime - endTime, Date
+1. style contact form
