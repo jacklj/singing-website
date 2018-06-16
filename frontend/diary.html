@@ -47,12 +47,12 @@
       var eventElement = document.createElement('div');
       eventElement.className = 'event';
       eventElement.innerHTML = `
-      <div>${event.url ? `<a href="${event.url}">` : ''}${event.name}${event.url ? '<\a>' : ''}</div>
-      <div>${event.venue_website ? `<a href="${event.venue_website}">` : ''}${event.company}${event.venue_website ? '<\a>' : ''}</div>
-      <div>${dateHtml}</div>
-      <div>${event.venue_name}, ${event.venue_address}</div>
-      <div>${event.my_role}</div>
-      <div>${event.copy}</div>
+      <div class="name">${event.url ? `<a href="${event.url}">` : ''}${event.name}${event.url ? '<\a>' : ''}</div>
+      <div class="company">${event.venue_website ? `<a href="${event.venue_website}">` : ''}${event.company}${event.venue_website ? '<\a>' : ''}</div>
+      <div class="date">${dateHtml}</div>
+      <div class="address">${event.venue_name}, ${event.venue_address}</div>
+      <div class="my_role">${event.my_role}</div>
+      <div class="copy">${event.copy}</div>
       `;
 
       return eventElement;

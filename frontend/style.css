@@ -29,3 +29,25 @@ ul.navigation li {
 .headshot {
   height: 500px;
 }
+
+.event {
+  margin-bottom: 20px;
+}
+
+.event .name {
+  font-size: 2.3em;
+}
+.event .name a {
+  text-decoration: none;
+  color: black;
+}
+.event .company {
+  font-size: 1.6em;
+}
+.event .company a {
+  text-decoration: none;
+  color: black;
+}
+.event .date {
+  font-size: 1.6em;
+}
