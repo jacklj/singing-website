@@ -2,8 +2,6 @@
 Singing website
 
 ## todo
-1. longer biog on about page
-1. different picture on about page
 1. contact form works on heroku - need to put credentials in config
 1. check all working on heroku
 1. link to .com domain
@@ -11,6 +9,7 @@ Singing website
 then basic website is up :)
 
 ## next
+1. home page in navigation
 1. remove github static site build thing
 1. make soundcloud for recordings, upload >= 1
 1. make instagram for images and short videos
@@ -45,3 +44,5 @@ then basic website is up :)
   - install moment on frontend for easy date comparison
   - if same day, display: startTime - endTime, Date
 1. style contact form
+1. longer biog on about page
+1. different picture on about page
