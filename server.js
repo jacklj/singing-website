@@ -50,10 +50,11 @@ app.post('/contact', function (req, res) {
   };
   smtpTrans.sendMail(mailOpts, function (error, response) {
     if (error) {
-      res.send('contact-failure');
+      res.send("Message sending failed, sorry - we're looking into it!");
+      console.log("message sending error: ", req.body)
     }
     else {
-      res.send('contact-success');
+      res.send("Thanks for your message - I'll be in touch! Use the back button in your browser to return to my website.");
     }
   });
 });
