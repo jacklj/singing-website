@@ -2,7 +2,6 @@
 Singing website
 
 ## todo
-1. All events endpoint generates list of all events
 1. add date/time display logic to events (base it off your python code)
   - install moment on frontend for easy date comparison
   - if same day, display: startTime - endTime, Date
@@ -44,3 +43,4 @@ then basic website is up :)
    - has multiple shows (start, finish, FK to venue, FK to production)
    - venues have website, address
 1. add all current events to knex seed file
+1. All events endpoint generates list of all events
