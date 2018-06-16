@@ -2,10 +2,6 @@
 Singing website
 
 ## todo
-1. All event times are an hour off
-  - tried using moment-locale -> didnt work (could remove this code)
-  - checked in the database - the dates are different, the moment.js code in the seed file must be doing difrerent things locally and on te server. Need to make the locale of this london/
-
 1. fix knex seed so it doesnt always fail first time - make deletions synchronous (delete venues, then productions, then shows (i think), to avoid foreign key problems)
 1. when you send a message, proper visual feedback (stay on page etc)
 1. remove .html from path names
@@ -49,3 +45,6 @@ Singing website
 1. contact form works on heroku - need to put credentials in config
 1. check all working on heroku
 1. link to .com domain -> then basic website is up :)
+1. All event times are an hour off
+  - tried using moment-locale -> didnt work (could remove this code)
+  - checked in the database - the dates are different, the moment.js code in the seed file must be doing difrerent things locally and on te server. Need to make the locale of this london - done!
