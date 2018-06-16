@@ -1,4 +1,4 @@
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
@@ -64,50 +64,50 @@ exports.seed = function(knex, Promise) {
       const garsingtonVenueId = values[1][0].id;
       return knex('shows').insert([
         {
-          start: moment().year(2018).month(5).date(17).hour(18).minute(0).toISOString(),
-          end: moment().year(2018).month(5).date(17).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(5).date(17).hour(18).minute(0).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(5).date(17).hour(22).minute(0).toISOString(),
           production_id: magicFluteId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(5).date(22).hour(18).minute(0).toISOString(),
-          end: moment().year(2018).month(5).date(22).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(5).date(22).hour(18).minute(0).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(5).date(22).hour(22).minute(0).toISOString(),
           production_id: magicFluteId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(5).date(24).hour(18).minute(0).toISOString(),
-          end: moment().year(2018).month(5).date(24).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(5).date(24).hour(18).minute(0).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(5).date(24).hour(22).minute(0).toISOString(),
           production_id: magicFluteId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(5).date(30).hour(18).minute(0).toISOString(),
-          end: moment().year(2018).month(5).date(30).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(5).date(30).hour(18).minute(0).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(5).date(30).hour(22).minute(0).toISOString(),
           production_id: magicFluteId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(6).date(11).hour(18).minute(0).toISOString(),
-          end: moment().year(2018).month(6).date(11).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(6).date(11).hour(18).minute(0).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(6).date(11).hour(22).minute(0).toISOString(),
           production_id: magicFluteId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(6).date(17).hour(18).minute(0).toISOString(),
-          end: moment().year(2018).month(6).date(17).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(6).date(17).hour(18).minute(0).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(6).date(17).hour(22).minute(0).toISOString(),
           production_id: magicFluteId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(6).date(19).hour(18).minute(0).toISOString(),
-          end: moment().year(2018).month(6).date(19).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(6).date(19).hour(18).minute(0).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(6).date(19).hour(22).minute(0).toISOString(),
           production_id: magicFluteId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(6).date(21).hour(18).minute(0).toISOString(),
-          end: moment().year(2018).month(6).date(21).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(6).date(21).hour(18).minute(0).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(6).date(21).hour(22).minute(0).toISOString(),
           production_id: magicFluteId,
           venue_id: garsingtonVenueId,
         },
@@ -124,20 +124,20 @@ exports.seed = function(knex, Promise) {
       const garsingtonVenueId = values[1][0].id;
       return knex('shows').insert([
         {
-          start: moment().year(2018).month(5).date(20).hour(18).minute(15).toISOString(),
-          end: moment().year(2018).month(5).date(20).hour(22).minute(5).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(5).date(20).hour(18).minute(15).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(5).date(20).hour(22).minute(5).toISOString(),
           production_id: capriccioId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(5).date(23).hour(18).minute(15).toISOString(),
-          end: moment().year(2018).month(5).date(23).hour(22).minute(5).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(5).date(23).hour(18).minute(15).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(5).date(23).hour(22).minute(5).toISOString(),
           production_id: capriccioId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(5).date(28).hour(18).minute(15).toISOString(),
-          end: moment().year(2018).month(5).date(28).hour(22).minute(5).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(5).date(28).hour(18).minute(15).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(5).date(28).hour(22).minute(5).toISOString(),
           production_id: capriccioId,
           venue_id: garsingtonVenueId,
         },
@@ -154,62 +154,62 @@ exports.seed = function(knex, Promise) {
       const garsingtonVenueId = values[1][0].id;
       return knex('shows').insert([
         {
-          start: moment().year(2018).month(5).date(16).hour(18).minute(30).toISOString(),
-          end: moment().year(2018).month(5).date(16).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(5).date(16).hour(18).minute(30).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(5).date(16).hour(22).minute(0).toISOString(),
           production_id: falstaffId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(5).date(18).hour(18).minute(30).toISOString(),
-          end: moment().year(2018).month(5).date(18).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(5).date(18).hour(18).minute(30).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(5).date(18).hour(22).minute(0).toISOString(),
           production_id: falstaffId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(5).date(21).hour(18).minute(30).toISOString(),
-          end: moment().year(2018).month(5).date(21).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(5).date(21).hour(18).minute(30).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(5).date(21).hour(22).minute(0).toISOString(),
           production_id: falstaffId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(5).date(29).hour(18).minute(30).toISOString(),
-          end: moment().year(2018).month(5).date(29).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(5).date(29).hour(18).minute(30).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(5).date(29).hour(22).minute(0).toISOString(),
           production_id: falstaffId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(6).date(4).hour(18).minute(30).toISOString(),
-          end: moment().year(2018).month(6).date(4).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(6).date(4).hour(18).minute(30).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(6).date(4).hour(22).minute(0).toISOString(),
           production_id: falstaffId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(6).date(7).hour(18).minute(30).toISOString(),
-          end: moment().year(2018).month(6).date(7).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(6).date(7).hour(18).minute(30).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(6).date(7).hour(22).minute(0).toISOString(),
           production_id: falstaffId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(6).date(13).hour(18).minute(30).toISOString(),
-          end: moment().year(2018).month(6).date(13).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(6).date(13).hour(18).minute(30).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(6).date(13).hour(22).minute(0).toISOString(),
           production_id: falstaffId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(6).date(15).hour(18).minute(30).toISOString(),
-          end: moment().year(2018).month(6).date(15).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(6).date(15).hour(18).minute(30).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(6).date(15).hour(22).minute(0).toISOString(),
           production_id: falstaffId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(6).date(20).hour(18).minute(30).toISOString(),
-          end: moment().year(2018).month(6).date(20).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(6).date(20).hour(18).minute(30).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(6).date(20).hour(22).minute(0).toISOString(),
           production_id: falstaffId,
           venue_id: garsingtonVenueId,
         },
         {
-          start: moment().year(2018).month(6).date(22).hour(18).minute(30).toISOString(),
-          end: moment().year(2018).month(6).date(22).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(6).date(22).hour(18).minute(30).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(6).date(22).hour(22).minute(0).toISOString(),
           production_id: falstaffId,
           venue_id: garsingtonVenueId,
         },
@@ -226,8 +226,8 @@ exports.seed = function(knex, Promise) {
       const maldonChoralVenueId = values[1][0].id;
       return knex('shows').insert([
         {
-          start: moment().year(2018).month(6).date(14).hour(19).minute(30).toISOString(),
-          end: moment().year(2018).month(6).date(14).hour(22).minute(0).toISOString(),
+          start: moment().tz("Europe/London").year(2018).month(6).date(14).hour(19).minute(30).toISOString(),
+          end: moment().tz("Europe/London").year(2018).month(6).date(14).hour(22).minute(0).toISOString(),
           production_id: creationId,
           venue_id: maldonChoralVenueId,
         },
