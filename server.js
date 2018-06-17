@@ -14,7 +14,9 @@ const port = process.env.PORT || 8080;
 const staticDir = path.join(__dirname, 'frontend');
 const blogStaticDir = path.join(__dirname, 'blog', 'public');
 
-app.use(express.static(staticDir));
+app.use(express.static(staticDir, {
+    extensions: ['html', 'htm'],
+}));
 app.use('/blog', express.static(blogStaticDir));
 
 http.listen(port, function(){
