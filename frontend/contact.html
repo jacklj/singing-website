@@ -13,7 +13,7 @@
         <li class="current"><a href="./contact">contact</a></li>
       </ul>
       <h2>Contact</h2>
-      <form action="/contact" id="contact-form" class="contact-form" method="post" role="form">
+      <form id="contact-form" class="contact-form">
         <fieldset>
           <ul>
             <li>
@@ -30,5 +30,41 @@
         </fieldset>
       </form>
     </div>
+    <script>
+      window.addEventListener("load", function () {
+        function sendData() {
+          var XHR = new XMLHttpRequest();
+
+          // Bind the FormData object and the form element
+          var FD = new FormData(form);
+
+          // Define what happens on successful data submission
+          XHR.addEventListener("load", function(event) {
+            alert("Thanks for your message - I'll be in touch!");
+          });
+
+          // Define what happens in case of error
+          XHR.addEventListener("error", function(event) {
+            alert("Message sending failed, sorry - I'm looking into it!");
+          });
+
+          // Set up our request
+          XHR.open("POST", "/contact");
+
+          // The data sent is what the user provided in the form
+          XHR.send(FD);
+        }
+
+        // Access the form element...
+        var form = document.getElementById("contact-form");
+
+        // ...and take over its submit event.
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          sendData();
+        });
+      });
+    </script>
   </body>
 </html>
