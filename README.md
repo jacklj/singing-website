@@ -1,23 +1,7 @@
 # website
 Singing website
 
-## todo
-1. fix knex seed so it doesnt always fail first time - make deletions synchronous (delete venues, then productions, then shows (i think), to avoid foreign key problems)
-1. when you send a message, proper visual feedback (stay on page etc)
-1. remove .html from path names
-1. home page in navigation
-1. remove github static site build thing
-1. make soundcloud for recordings, upload >= 1
-1. make instagram for images and short videos
-1. make media page and embed soundcloud and instagram
-1. improve style: get ideas, colour schemes from templates and sites and play for half an hour
-1. install wordpress on blog subdomain
-1. write blog post
-1. diary app
-   - make create, edit, delete endpoints
-   - then can generate admin interface to easily add events, using https://marmelab.com/react-admin, if necessary
-
-## done
+## done 16/6/'18
 - make pgdb data model
 - make endpoint to getAll events
 - display events on diary page
