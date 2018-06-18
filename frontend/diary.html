@@ -31,24 +31,23 @@
 
     function createEventElement(event) {
       // format date/time
-      var start = moment(event.start);
-      var end = moment(event.end);
-      var dateHtml;
-      console.log(start.isDST());
+      const start = moment(event.start);
+      const end = moment(event.end);
+      let dateHtml;
       if(start.isSame(end, 'day')) {
         // same day start and finish: ie a normal concert.
         // Display e.g. 7:30pm - 10pm, Saturday 7th January 2018
-        var startTime = start.tz("Europe/London").format('h:mm a');
-        var endTime = end.tz("Europe/London").format('h:mm a');
-        var date = end.tz("Europe/London").format('dddd Do MMMM, YYYY');
+        const startTime = start.tz("Europe/London").format('h:mm a');
+        const endTime = end.tz("Europe/London").format('h:mm a');
+        const date = end.tz("Europe/London").format('dddd Do MMMM, YYYY');
         dateHtml = `${startTime} - ${endTime}, ${date}`
       } else {
-        var startDate = start.tz("Europe/London").format('h:mm a, dddd Do MMMM, YYYY');
-        var endDate = end.tz("Europe/London").format('h:mm a, dddd Do MMMM, YYYY');
+        const startDate = start.tz("Europe/London").format('h:mm a, dddd Do MMMM, YYYY');
+        const endDate = end.tz("Europe/London").format('h:mm a, dddd Do MMMM, YYYY');
         dateHtml =`${startDate} - ${endDate}`;
       }
 
-      var eventElement = document.createElement('div');
+      const eventElement = document.createElement('div');
       eventElement.className = 'event';
       eventElement.innerHTML = `
       <div class="name">${event.url ? `<a href="${event.url}">` : ''}${event.name}${event.url ? '<\a>' : ''}</div>
@@ -63,10 +62,9 @@
     }
 
     function onBodyLoad() {
-      console.log("body just loaded!!")
       const eventsContainer = document.getElementById('events');
 
-      var request = new XMLHttpRequest();
+      const request = new XMLHttpRequest();
       request.open('GET', '/events', true);
       request.onload = function() {
         if(request.status >= 200) {
@@ -76,8 +74,8 @@
           });
           futureEvents.sort(reverseChronologicalSort);
 
-          for (var i = 0, len = futureEvents.length; i < len; i++) {
-            var eventElement = createEventElement(futureEvents[i]);
+          for (let i = 0, len = futureEvents.length; i < len; i++) {
+            const eventElement = createEventElement(futureEvents[i]);
             eventsContainer.appendChild(eventElement);
           }
         } else {
