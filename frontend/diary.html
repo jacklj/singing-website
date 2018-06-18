@@ -66,20 +66,20 @@
       console.log("body just loaded!!")
       const eventsContainer = document.getElementById('events');
 
-      var events;
       var request = new XMLHttpRequest();
       request.open('GET', '/events', true);
       request.onload = function() {
         if(request.status >= 200) {
-          events = JSON.parse(request.responseText);
-          events.sort(reverseChronologicalSort);
-          console.log(events);
+          const allEvents = JSON.parse(request.responseText);
+          const futureEvents = allEvents.filter(function(event) {
+            return !moment().isAfter(moment(event.end));
+          });
+          futureEvents.sort(reverseChronologicalSort);
 
-          for (var i = 0, len = events.length; i < len; i++) {
-            var eventElement = createEventElement(events[i]);
+          for (var i = 0, len = futureEvents.length; i < len; i++) {
+            var eventElement = createEventElement(futureEvents[i]);
             eventsContainer.appendChild(eventElement);
           }
-
         } else {
           console.warn("error")
         }
