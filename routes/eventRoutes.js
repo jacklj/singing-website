@@ -138,5 +138,22 @@ router.post('/api/shows', function(req, res, next) {
     });
 });
 
+router.put('/api/shows/:id', function (req, res, next) {
+  const showId = req.params.id;
+  const showFieldsToUpdate = req.body;
+  knex('shows')
+    .where('id', showId)
+    .update({
+      ...showFieldsToUpdate,
+    })
+  .then((count) => {
+    console.log('Number of fields updated: ' + count);
+    res.status(200).send();
+  })
+  .catch(error => {
+    console.warn(error);
+    res.status(400).json(error)
+  });
+});
 
 module.exports = router;
