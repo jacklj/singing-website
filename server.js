@@ -85,6 +85,25 @@ app.get('/api/shows', function(req, res, next) {
     .catch(error => console.warn(error));
 });
 
+app.post('/api/shows', function(req, res, next) {
+  const newShow = req.body;
+  knex('shows')
+    .insert([
+      {
+        start: newShow.start,
+        end: newShow.end,
+        production_id: newShow.production_id,
+        venue_id: newShow.venue_id,
+      },
+    ])
+    .then(() => res.status(200).send())
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error)
+    });
+});
+
+
 // POST route from contact form
 app.post('/api/contact', function (req, res) {
   let mailOpts, smtpTrans;
