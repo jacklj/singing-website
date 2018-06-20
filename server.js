@@ -6,6 +6,7 @@ require('dotenv').config()
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(require("body-parser").json())
 
 const knex = require('./db/knex.js');
 const port = process.env.PORT || 8080;
