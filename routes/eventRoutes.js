@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex.js');
 
+const bodyParser = require('body-parser');
+router.use(bodyParser.urlencoded({extended: true}));
 router.get('/api/events', function(req, res, next) {
   knex('shows')
     .join('productions', 'shows.production_id', 'productions.id')
