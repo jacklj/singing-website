@@ -3,56 +3,23 @@ var app = express();
 var http = require('http').Server(app);
 const path = require('path');
 require('dotenv').config()
-const nodemailer = require('nodemailer');
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(require("body-parser").json())
 
 const knex = require('./db/knex.js');
 const port = process.env.PORT || 8080;
-
 
 http.listen(port, function(){
   console.log(`hello.\nlistening on ${port}.`);
 });
 
+// static routes
 // need to use __dirname so that these paths are correct in Heroku
 const staticDir = path.join(__dirname, 'frontend');
 const blogStaticDir = path.join(__dirname, 'blog', 'public');
-
 app.use(express.static(staticDir, {
     extensions: ['html', 'htm'],
 }));
-
 app.use('/blog', express.static(blogStaticDir));
 
+// (non-static) routes
 app.use(require('./routes/eventRoutes.js'));
-
-// POST route from contact form
-app.post('/api/contact', function (req, res) {
-  let mailOpts, smtpTrans;
-  smtpTrans = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS
-    }
-  });
-  mailOpts = {
-    from: req.body.name + ' &lt;' + req.body.email + '&gt;',
-    to: process.env.GMAIL_USER,
-    subject: 'New message from contact form at jacklawrencejones.com',
-    text: `${req.body.name} (${req.body.email}) says: ${req.body.message}`
-  };
-  smtpTrans.sendMail(mailOpts, function (error, response) {
-    if (error) {
-      res.send();
-      console.log("message sending error: ", req.body)
-    }
-    else {
-      res.send();
-    }
-  });
-});
+app.use(require('./routes/contact.js'));
