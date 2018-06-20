@@ -33,10 +33,25 @@ app.get('/api/events', function(req, res, next) {
     .catch(error => console.warn(error));
 });
 
+
 app.get('/api/venues', function(req, res, next) {
   knex('venues')
     .select()
     .then(venues => res.status(200).json(venues))
+    .catch(error => console.warn(error));
+});
+
+app.post('/api/venues', function(req, res, next) {
+  const newVenue = req.body;
+  knex('venues')
+    .insert([
+      {
+        venue_name: newVenue.venue_name,
+        venue_address: newVenue.venue_address,
+        venue_website: newVenue.venue_website,
+      },
+    ])
+    .then(() => res.status(200).send())
     .catch(error => console.warn(error));
 });
 
