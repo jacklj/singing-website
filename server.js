@@ -62,6 +62,22 @@ app.get('/api/productions', function(req, res, next) {
     .catch(error => console.warn(error));
 });
 
+app.post('/api/productions', function(req, res, next) {
+  const newProduction = req.body;
+  knex('productions')
+    .insert([
+      {
+        name: newProduction.name,
+        company: newProduction.company,
+        url: newProduction.url,
+        copy: newProduction.copy,
+        my_role: newProduction.my_role,
+      },
+    ])
+    .then(() => res.status(200).send())
+    .catch(error => console.warn(error));
+});
+
 app.get('/api/shows', function(req, res, next) {
   knex('shows')
     .select()
