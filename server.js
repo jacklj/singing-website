@@ -30,7 +30,10 @@ app.get('/api/events', function(req, res, next) {
     .join('venues', 'shows.venue_id', 'venues.id')
     .select()
     .then(events => res.status(200).json(events))
-    .catch(error => console.warn(error));
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error)
+    });
 });
 
 
@@ -38,7 +41,10 @@ app.get('/api/venues', function(req, res, next) {
   knex('venues')
     .select()
     .then(venues => res.status(200).json(venues))
-    .catch(error => console.warn(error));
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error)
+    });
 });
 
 app.post('/api/venues', function(req, res, next) {
@@ -52,14 +58,20 @@ app.post('/api/venues', function(req, res, next) {
       },
     ])
     .then(() => res.status(200).send())
-    .catch(error => console.warn(error));
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error)
+    });
 });
 
 app.get('/api/productions', function(req, res, next) {
   knex('productions')
     .select()
     .then(productions => res.status(200).json(productions))
-    .catch(error => console.warn(error));
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error)
+    });
 });
 
 app.post('/api/productions', function(req, res, next) {
@@ -75,14 +87,20 @@ app.post('/api/productions', function(req, res, next) {
       },
     ])
     .then(() => res.status(200).send())
-    .catch(error => console.warn(error));
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error)
+    });
 });
 
 app.get('/api/shows', function(req, res, next) {
   knex('shows')
     .select()
     .then(shows => res.status(200).json(shows))
-    .catch(error => console.warn(error));
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error)
+    });
 });
 
 app.post('/api/shows', function(req, res, next) {
