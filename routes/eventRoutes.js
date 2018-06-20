@@ -92,6 +92,24 @@ router.post('/api/productions', function(req, res, next) {
     });
 });
 
+router.put('/api/productions/:id', function (req, res, next) {
+  const productionId = req.params.id;
+  const productionFieldsToUpdate = req.body;
+  knex('productions')
+    .where('id', productionId)
+    .update({
+      ...productionFieldsToUpdate,
+    })
+  .then((count) => {
+    console.log('Number of fields updated: ' + count);
+    res.status(200).send();
+  })
+  .catch(error => {
+    console.warn(error);
+    res.status(400).json(error)
+  });
+});
+
 router.get('/api/shows', function(req, res, next) {
   knex('shows')
     .select()
