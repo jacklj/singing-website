@@ -3,7 +3,6 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 
-router.use(bodyParser.urlencoded({extended: true}));
 router.use(require("body-parser").json())
 
 // POST route from contact form
