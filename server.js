@@ -24,7 +24,7 @@ http.listen(port, function(){
   console.log(`hello.\nlistening on ${port}.`);
 });
 
-app.get('/events', function(req, res, next) {
+app.get('/api/events', function(req, res, next) {
   knex('shows')
     .join('productions', 'shows.production_id', 'productions.id')
     .join('venues', 'shows.venue_id', 'venues.id')
@@ -34,7 +34,7 @@ app.get('/events', function(req, res, next) {
 });
 
 // POST route from contact form
-app.post('/contact', function (req, res) {
+app.post('/api/contact', function (req, res) {
   let mailOpts, smtpTrans;
   smtpTrans = nodemailer.createTransport({
     host: 'smtp.gmail.com',

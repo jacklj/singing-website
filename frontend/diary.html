@@ -65,7 +65,7 @@
       const eventsContainer = document.getElementById('events');
 
       const request = new XMLHttpRequest();
-      request.open('GET', '/events', true);
+      request.open('GET', '/api/events', true);
       request.onload = function() {
         if(request.status >= 200) {
           const allEvents = JSON.parse(request.responseText);
