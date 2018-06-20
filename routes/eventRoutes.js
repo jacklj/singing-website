@@ -44,6 +44,24 @@ router.post('/api/venues', function(req, res, next) {
     });
 });
 
+router.put('/api/venues/:id', function (req, res, next) {
+  const venueId = req.params.id;
+  const venueFieldsToUpdate = req.body;
+  knex('venues')
+    .where('id', venueId)
+    .update({
+      ...venueFieldsToUpdate,
+    })
+  .then((count) => {
+    console.log('Number of fields updated: ' + count);
+    res.status(200).send();
+  })
+  .catch(error => {
+    console.warn(error);
+    res.status(400).json(error)
+  });
+});
+
 router.get('/api/productions', function(req, res, next) {
   knex('productions')
     .select()
