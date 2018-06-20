@@ -33,6 +33,27 @@ app.get('/api/events', function(req, res, next) {
     .catch(error => console.warn(error));
 });
 
+app.get('/api/venues', function(req, res, next) {
+  knex('venues')
+    .select()
+    .then(venues => res.status(200).json(venues))
+    .catch(error => console.warn(error));
+});
+
+app.get('/api/productions', function(req, res, next) {
+  knex('productions')
+    .select()
+    .then(productions => res.status(200).json(productions))
+    .catch(error => console.warn(error));
+});
+
+app.get('/api/shows', function(req, res, next) {
+  knex('shows')
+    .select()
+    .then(shows => res.status(200).json(shows))
+    .catch(error => console.warn(error));
+});
+
 // POST route from contact form
 app.post('/api/contact', function (req, res) {
   let mailOpts, smtpTrans;
