@@ -63,6 +63,21 @@ router.put('/api/venues/:id', function (req, res, next) {
   });
 });
 
+router.delete('/api/venues/:id', function (req, res, next) {
+  const venueId = req.params.id;
+  knex('venues')
+    .where('id', venueId)
+    .del()
+  .then((count) => {
+    console.log('Number of venues deleted: ' + count);
+    res.status(200).send();
+  })
+  .catch(error => {
+    console.warn(error);
+    res.status(400).json(error)
+  });
+});
+
 router.get('/api/productions', function(req, res, next) {
   knex('productions')
     .select()
@@ -110,6 +125,21 @@ router.put('/api/productions/:id', function (req, res, next) {
   });
 });
 
+router.delete('/api/productions/:id', function (req, res, next) {
+  const productionId = req.params.id;
+  knex('productions')
+    .where('id', productionId)
+    .del()
+  .then((count) => {
+    console.log('Number of productions deleted: ' + count);
+    res.status(200).send();
+  })
+  .catch(error => {
+    console.warn(error);
+    res.status(400).json(error)
+  });
+});
+
 router.get('/api/shows', function(req, res, next) {
   knex('shows')
     .select()
@@ -148,6 +178,22 @@ router.put('/api/shows/:id', function (req, res, next) {
     })
   .then((count) => {
     console.log('Number of fields updated: ' + count);
+    res.status(200).send();
+  })
+  .catch(error => {
+    console.warn(error);
+    res.status(400).json(error)
+  });
+});
+
+router.delete('/api/shows/:id', function (req, res, next) {
+  const showId = req.params.id;
+  const showFieldsToUpdate = req.body;
+  knex('shows')
+    .where('id', showId)
+    .del()
+  .then((count) => {
+    console.log('Number of shows updated: ' + count);
     res.status(200).send();
   })
   .catch(error => {
