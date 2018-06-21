@@ -17,8 +17,9 @@ router.post('/api/contact', function (req, res) {
       pass: process.env.GMAIL_PASS
     }
   });
+  const from = req.body.name + ' (' + req.body.email + ')';
   mailOpts = {
-    from: req.body.name + ' &lt;' + req.body.email + '&gt;',
+    from: from,
     to: process.env.GMAIL_USER,
     subject: 'New message from contact form at jacklawrencejones.com',
     text: `${req.body.name} (${req.body.email}) says: ${req.body.message}`
@@ -29,6 +30,7 @@ router.post('/api/contact', function (req, res) {
       console.log("message sending error: ", req.body)
     }
     else {
+      console.log("Contact form email successfully sent [from " + from + "]");
       res.send();
     }
   });

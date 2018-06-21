@@ -46,7 +46,7 @@
           XHR.open("POST", "/api/contact");
           XHR.setRequestHeader("Content-Type", "application/json");
 
-          XHR.onreadystatechange = function () {
+          XHR.onload = function () {
             if (XHR.status === 200) {
               alert("Thanks for your message - I'll be in touch!");
             } else {
