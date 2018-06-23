@@ -1,11 +1,15 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
+var cors = require('cors')
+
 const path = require('path');
 require('dotenv').config()
 
 const knex = require('./db/knex.js');
 const port = process.env.PORT || 8080;
+
+app.use(cors())
 
 http.listen(port, function(){
   console.log(`hello.\nlistening on ${port}.`);
