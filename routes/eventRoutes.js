@@ -45,6 +45,7 @@ router.get('/api/venues/:id', function(req, res, next) {
 router.post('/api/venues', function(req, res, next) {
   const newVenue = req.body;
   knex('venues')
+    .returning(['id', 'venue_name', 'venue_address', 'venue_website'])
     .insert([
       {
         venue_name: newVenue.venue_name,
@@ -52,7 +53,8 @@ router.post('/api/venues', function(req, res, next) {
         venue_website: newVenue.venue_website,
       },
     ])
-    .then(() => res.status(200).send())
+    .then(resultArray => resultArray[0])
+    .then(result => res.status(200).json(result))
     .catch(error => {
       console.warn(error);
       res.status(400).json(error)
