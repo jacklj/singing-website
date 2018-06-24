@@ -121,6 +121,7 @@ router.get('/api/productions/:id', function(req, res, next) {
 router.post('/api/productions', function(req, res, next) {
   const newProduction = req.body;
   knex('productions')
+    .returning(['id', 'name', 'company', 'url', 'copy', 'my_role'])
     .insert([
       {
         name: newProduction.name,
@@ -130,7 +131,8 @@ router.post('/api/productions', function(req, res, next) {
         my_role: newProduction.my_role,
       },
     ])
-    .then(() => res.status(200).send())
+    .then(resultArray => resultArray[0])
+    .then(result => res.status(200).json(result))
     .catch(error => {
       console.warn(error);
       res.status(400).json(error)
@@ -197,6 +199,7 @@ router.get('/api/shows/:id', function(req, res, next) {
 router.post('/api/shows', function(req, res, next) {
   const newShow = req.body;
   knex('shows')
+    .returning(['id', 'start', 'end', 'production_id', 'venue_id'])
     .insert([
       {
         start: newShow.start,
@@ -205,7 +208,8 @@ router.post('/api/shows', function(req, res, next) {
         venue_id: newShow.venue_id,
       },
     ])
-    .then(() => res.status(200).send())
+    .then(resultArray => resultArray[0])
+    .then(result => res.status(200).json(result))
     .catch(error => {
       console.warn(error);
       res.status(400).json(error)
