@@ -1,12 +1,12 @@
 import React from 'react';
-import { List, Datagrid, TextField, ReferenceField } from 'react-admin';
+import { List, Datagrid, DateField, TextField, ReferenceField } from 'react-admin';
 
 export const ShowsList = (props) => (
     <List {...props}>
         <Datagrid>
             <TextField source="id" />
-            <TextField source="start" />
-            <TextField source="end" />
+            <DateField source="start" showTime />
+            <DateField source="end" showTime />
             <ReferenceField label="Production" source="production_id" reference="productions">
                 <TextField source="name" />
             </ReferenceField>
