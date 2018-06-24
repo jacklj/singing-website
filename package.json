@@ -17,6 +17,7 @@
     "pg": "^7.4.3"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "cd admin && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   }
 }

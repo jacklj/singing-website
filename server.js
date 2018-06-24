@@ -9,7 +9,9 @@ require('dotenv').config()
 const knex = require('./db/knex.js');
 const port = process.env.PORT || 8080;
 
-app.use(cors())
+if (process.env.NODE_ENV !== 'production') {
+  app.use(cors());
+}
 
 http.listen(port, function(){
   console.log(`hello.\nlistening on ${port}.`);
@@ -23,6 +25,14 @@ app.use(express.static(staticDir, {
     extensions: ['html', 'htm'],
 }));
 app.use('/blog', express.static(blogStaticDir));
+
+// Serve any static files
+app.use('/admin', express.static(path.join(__dirname, 'admin/build')));
+// Handle React routing, return all requests to React app
+app.get('/admin', function(req, res) {
+  res.sendFile(path.join(__dirname, 'admin/build', 'index.html'));
+});
+
 
 // (non-static) routes
 app.use(require('./routes/eventRoutes.js'));
