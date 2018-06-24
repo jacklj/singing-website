@@ -28,6 +28,20 @@ router.get('/api/venues', function(req, res, next) {
     });
 });
 
+router.get('/api/venues/:id', function(req, res, next) {
+  const venueId = req.params.id;
+  knex('venues')
+    .select()
+    .where({
+      id: venueId,
+    })
+    .then(venues => res.status(200).json(venues[0]))
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error)
+    });
+});
+
 router.post('/api/venues', function(req, res, next) {
   const newVenue = req.body;
   knex('venues')
@@ -82,6 +96,20 @@ router.get('/api/productions', function(req, res, next) {
   knex('productions')
     .select()
     .then(productions => res.status(200).json(productions))
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error)
+    });
+});
+
+router.get('/api/productions/:id', function(req, res, next) {
+  const productionId = req.params.id;
+  knex('productions')
+    .select()
+    .where({
+      id: productionId,
+    })
+    .then(productions => res.status(200).json(productions[0]))
     .catch(error => {
       console.warn(error);
       res.status(400).json(error)
@@ -144,6 +172,20 @@ router.get('/api/shows', function(req, res, next) {
   knex('shows')
     .select()
     .then(shows => res.status(200).json(shows))
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error)
+    });
+});
+
+router.get('/api/shows/:id', function(req, res, next) {
+  const showId = req.params.id;
+  knex('shows')
+    .select()
+    .where({
+      id: showId,
+    })
+    .then(shows => res.status(200).json(shows[0]))
     .catch(error => {
       console.warn(error);
       res.status(400).json(error)
