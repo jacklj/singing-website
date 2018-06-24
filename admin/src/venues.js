@@ -15,7 +15,7 @@ export const VenuesList = (props) => (
 );
 
 const VenueTitle = ({ record }) => {
-    return <span>Post {record ? `"${record.name}"` : ''}</span>;
+    return <span>Venue {record ? `"${record.venue_name}"` : ''}</span>;
 };
 
 export const VenueEdit = (props) => (
