@@ -1,5 +1,6 @@
 import {
     GET_LIST,
+    GET_ONE,
     CREATE,
     UPDATE,
     DELETE,
@@ -19,6 +20,9 @@ const convertDataProviderRequestToHTTP = (type, resource, params) => {
     switch (type) {
     case GET_LIST: {
         return { url: `${API_URL}/${resource}` };
+    }
+    case GET_ONE: {
+      return { url: `${API_URL}/${resource}/${params.id}` };
     }
     case UPDATE:
         return {
