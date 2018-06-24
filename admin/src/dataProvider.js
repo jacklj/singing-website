@@ -8,7 +8,7 @@ import {
 } from 'react-admin';
 import { stringify } from 'query-string';
 
-const API_URL = 'http://localhost:8080/api';
+const API_URL = './api';
 
 /**
  * @param {String} type One of the constants appearing at the top if this file, e.g. 'UPDATE'
