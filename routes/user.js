@@ -110,7 +110,11 @@ function isAuthenticated(req, res, next) {
     .then((userFromDB) => {
       if (userFromDB) { // user with matching token found
         if (userFromDB.username === userReq.username) {
-          return next();
+          // remove authentication data from request body, so that it doesn't
+          // intefere with the endpoints
+          delete req.body.username;
+          delete req.body.token;
+          return next(); // hand off to next function in middleware chain (probably the endpoint)
         } else { // username doesn't match token
           res.status(401).end();
         }
