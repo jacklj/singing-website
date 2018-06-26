@@ -62,7 +62,7 @@ router.post('/api/venues', isAuthenticated, function(req, res, next) {
     });
 });
 
-router.put('/api/venues/:id', function (req, res, next) {
+router.put('/api/venues/:id', isAuthenticated, function (req, res, next) {
   const venueId = req.params.id;
   const venueFieldsToUpdate = req.body;
   knex('venues')
@@ -80,7 +80,7 @@ router.put('/api/venues/:id', function (req, res, next) {
   });
 });
 
-router.delete('/api/venues/:id', function (req, res, next) {
+router.delete('/api/venues/:id', isAuthenticated, function (req, res, next) {
   const venueId = req.params.id;
   knex('venues')
     .where('id', venueId)
@@ -119,7 +119,7 @@ router.get('/api/productions/:id', function(req, res, next) {
     });
 });
 
-router.post('/api/productions', function(req, res, next) {
+router.post('/api/productions', isAuthenticated, function(req, res, next) {
   const newProduction = req.body;
   knex('productions')
     .returning(['id', 'name', 'company', 'url', 'copy', 'my_role'])
@@ -140,7 +140,7 @@ router.post('/api/productions', function(req, res, next) {
     });
 });
 
-router.put('/api/productions/:id', function (req, res, next) {
+router.put('/api/productions/:id', isAuthenticated, function (req, res, next) {
   const productionId = req.params.id;
   const productionFieldsToUpdate = req.body;
   knex('productions')
@@ -158,7 +158,7 @@ router.put('/api/productions/:id', function (req, res, next) {
   });
 });
 
-router.delete('/api/productions/:id', function (req, res, next) {
+router.delete('/api/productions/:id', isAuthenticated, function (req, res, next) {
   const productionId = req.params.id;
   knex('productions')
     .where('id', productionId)
@@ -197,7 +197,7 @@ router.get('/api/shows/:id', function(req, res, next) {
     });
 });
 
-router.post('/api/shows', function(req, res, next) {
+router.post('/api/shows', isAuthenticated, function(req, res, next) {
   const newShow = req.body;
   knex('shows')
     .returning(['id', 'start', 'end', 'production_id', 'venue_id'])
@@ -217,7 +217,7 @@ router.post('/api/shows', function(req, res, next) {
     });
 });
 
-router.put('/api/shows/:id', function (req, res, next) {
+router.put('/api/shows/:id', isAuthenticated, function (req, res, next) {
   const showId = req.params.id;
   const showFieldsToUpdate = req.body;
   knex('shows')
@@ -235,7 +235,7 @@ router.put('/api/shows/:id', function (req, res, next) {
   });
 });
 
-router.delete('/api/shows/:id', function (req, res, next) {
+router.delete('/api/shows/:id', isAuthenticated, function (req, res, next) {
   const showId = req.params.id;
   const showFieldsToUpdate = req.body;
   knex('shows')
