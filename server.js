@@ -41,3 +41,4 @@ app.use(require('./routes/contact.js'));
 // user authentication
 const User = require('./routes/user.js')
 app.post('/api/signup', User.signup)
+app.post('/api/signin', User.signin)
