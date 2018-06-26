@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const knex = require('../db/knex.js');
+const isAuthenticated = require('./user.js').isAuthenticated;
 
 const router = express.Router();
 router.use(bodyParser.json())
@@ -42,7 +43,7 @@ router.get('/api/venues/:id', function(req, res, next) {
     });
 });
 
-router.post('/api/venues', function(req, res, next) {
+router.post('/api/venues', isAuthenticated, function(req, res, next) {
   const newVenue = req.body;
   knex('venues')
     .returning(['id', 'venue_name', 'venue_address', 'venue_website'])

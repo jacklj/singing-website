@@ -102,7 +102,39 @@ const updateUserToken = (token, user) => {
   .then((dataArray) => dataArray[0])
 }
 
+function isAuthenticated(req, res, next) {
+  const userReq = req.body;
+  if(userReq.token && userReq.username) {
+    // token must exist and match the correct user
+    findByToken(userReq.token)
+    .then((userFromDB) => {
+      if (userFromDB) { // user with matching token found
+        if (userFromDB.username === userReq.username) {
+          return next();
+        } else { // username doesn't match token
+          res.status(401).end();
+        }
+      } else { // no matching token found
+        res.status(401).end();
+      }
+    });
+  } else {
+    res.status(401).end();
+  }
+
+}
+
+const findByToken = (token) => {
+  return database('users')
+    .select()
+    .where({
+      token: token,
+    })
+    .then(dataArray => dataArray[0]);
+}
+
 module.exports = {
   signup,
   signin,
+  isAuthenticated,
 }
