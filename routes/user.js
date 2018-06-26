@@ -1,0 +1,56 @@
+// from https://gist.github.com/laurenfazah/f9343ae8577999d301334fc68179b485
+const database = require('../db/knex.js');
+const bcrypt = require('bcrypt');                         // bcrypt will encrypt passwords to be saved in db
+const crypto = require('crypto');                         // built-in encryption node module
+
+const signup = (request, response) => {
+  const user = request.body;
+  hashPassword(user.password)
+    .then((hashedPassword) => {
+      delete user.password;
+      user.password_digest = hashedPassword;
+    })
+    .then(() => createToken())
+    .then(token => user.token = token)
+    .then(() => createUser(user))
+    .then(user => {
+      delete user.password_digest
+      response.status(201).json({ user })
+    })
+    .catch((err) => console.error(err))
+}
+
+const hashPassword = (password) => {
+  return new Promise((resolve, reject) =>
+    bcrypt.hash(password, 10, (err, hash) => {
+      err ? reject(err) : resolve(hash)
+    })
+  )
+}
+
+const createUser = (user) => { // save user to db
+  return database('users')
+    .returning(['id', 'username', 'created_at', 'token'])
+    .insert([
+      {
+        username: user.username,
+        password_digest: user.password_digest,
+        token: user.token,
+        created_at: new Date(),
+      },
+    ])
+  .then((dataArray) => dataArray[0])
+}
+
+// crypto ships with node - we're leveraging it to create a random, secure token
+const createToken = () => {
+  return new Promise((resolve, reject) => {
+    crypto.randomBytes(16, (err, data) => {
+      err ? reject(err) : resolve(data.toString('base64'))
+    })
+  })
+}
+
+module.exports = {
+  signup,
+}

@@ -37,3 +37,7 @@ app.get('/admin', function(req, res) {
 // (non-static) routes
 app.use(require('./routes/eventRoutes.js'));
 app.use(require('./routes/contact.js'));
+
+// user authentication
+const User = require('./routes/user.js')
+app.post('/api/signup', User.signup)
