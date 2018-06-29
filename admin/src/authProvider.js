@@ -29,6 +29,7 @@ export default (type, params) => {
            return Promise.reject();
        }
        return Promise.resolve();
+      // see https://marmelab.com/admin-on-rest/Authentication.html#catching-authentication-errors-on-the-api
    }
   if (type === AUTH_CHECK) {
     return localStorage.getItem('token') ? Promise.resolve() : Promise.reject();
