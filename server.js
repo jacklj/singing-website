@@ -41,7 +41,7 @@ app.use(require('./routes/contact.js'));
 
 // user authentication
 const User = require('./routes/user.js');
-app.post('/api/signup', User.signup);
+// app.post('/api/signup', User.signup); // disabled so new accounts can't be created
 app.post('/api/signin', User.signin);
 app.post('/api/issignedin', User.isAuthenticated, (request, response) =>
   response.status(200).end(),
