@@ -55,7 +55,10 @@ router.post('/api/venues', isAuthenticated, function(req, res, next) {
       },
     ])
     .then(resultArray => resultArray[0])
-    .then(result => res.status(200).json(result))
+    .then(result => {
+      console.log(`New venue created (id: ${result.id}, venue_name: ${result.venue_name})`)
+      res.status(200).json(result);
+    })
     .catch(error => {
       console.warn(error);
       res.status(400).json(error)
@@ -70,8 +73,8 @@ router.put('/api/venues/:id', isAuthenticated, function (req, res, next) {
     .update({
       ...venueFieldsToUpdate,
     })
-  .then((count) => {
-    console.log('Number of fields updated: ' + count);
+  .then(() => {
+    console.log(`Venue edited (id: ${venueId})`)
     res.status(200).send();
   })
   .catch(error => {
@@ -85,8 +88,8 @@ router.delete('/api/venues/:id', isAuthenticated, function (req, res, next) {
   knex('venues')
     .where('id', venueId)
     .del()
-  .then((count) => {
-    console.log('Number of venues deleted: ' + count);
+  .then(() => {
+    console.log(`Venue deleted (id: ${venueId})`);
     res.status(200).send();
   })
   .catch(error => {
@@ -133,7 +136,10 @@ router.post('/api/productions', isAuthenticated, function(req, res, next) {
       },
     ])
     .then(resultArray => resultArray[0])
-    .then(result => res.status(200).json(result))
+    .then(result => {
+      console.log(`New production created (id: ${result.id}, name: ${result.name})`)
+      res.status(200).json(result)
+    })
     .catch(error => {
       console.warn(error);
       res.status(400).json(error)
@@ -148,8 +154,8 @@ router.put('/api/productions/:id', isAuthenticated, function (req, res, next) {
     .update({
       ...productionFieldsToUpdate,
     })
-  .then((count) => {
-    console.log('Number of fields updated: ' + count);
+  .then(() => {
+    console.log(`Production edited (id: ${productionId})`);
     res.status(200).send();
   })
   .catch(error => {
@@ -163,8 +169,8 @@ router.delete('/api/productions/:id', isAuthenticated, function (req, res, next)
   knex('productions')
     .where('id', productionId)
     .del()
-  .then((count) => {
-    console.log('Number of productions deleted: ' + count);
+  .then(() => {
+    console.log(`Production deleted (id: ${productionId})`);
     res.status(200).send();
   })
   .catch(error => {
@@ -210,7 +216,10 @@ router.post('/api/shows', isAuthenticated, function(req, res, next) {
       },
     ])
     .then(resultArray => resultArray[0])
-    .then(result => res.status(200).json(result))
+    .then(result => {
+      console.log(`New shohw created (id: ${result.id}, start: ${result.start})`)
+      res.status(200).json(result);
+    })
     .catch(error => {
       console.warn(error);
       res.status(400).json(error)
@@ -226,7 +235,7 @@ router.put('/api/shows/:id', isAuthenticated, function (req, res, next) {
       ...showFieldsToUpdate,
     })
   .then((count) => {
-    console.log('Number of fields updated: ' + count);
+    console.log(`Show edited (id: ${showId})`);
     res.status(200).send();
   })
   .catch(error => {
@@ -242,7 +251,7 @@ router.delete('/api/shows/:id', isAuthenticated, function (req, res, next) {
     .where('id', showId)
     .del()
   .then((count) => {
-    console.log('Number of shows updated: ' + count);
+    console.log(`Show deleted (id: ${showId})`);
     res.status(200).send();
   })
   .catch(error => {
