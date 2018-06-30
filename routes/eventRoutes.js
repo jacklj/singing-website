@@ -4,7 +4,7 @@ const knex = require('../db/knex.js');
 const isAuthenticated = require('./user.js').isAuthenticated;
 
 const router = express.Router();
-router.use(bodyParser.json())
+router.use(bodyParser.json());
 
 router.get('/api/events', function(req, res, next) {
   knex('shows')
@@ -14,10 +14,9 @@ router.get('/api/events', function(req, res, next) {
     .then(events => res.status(200).json(events))
     .catch(error => {
       console.warn(error);
-      res.status(400).json(error)
+      res.status(400).json(error);
     });
 });
-
 
 router.get('/api/venues', function(req, res, next) {
   knex('venues')
@@ -25,7 +24,7 @@ router.get('/api/venues', function(req, res, next) {
     .then(venues => res.status(200).json(venues))
     .catch(error => {
       console.warn(error);
-      res.status(400).json(error)
+      res.status(400).json(error);
     });
 });
 
@@ -39,7 +38,7 @@ router.get('/api/venues/:id', function(req, res, next) {
     .then(venues => res.status(200).json(venues[0]))
     .catch(error => {
       console.warn(error);
-      res.status(400).json(error)
+      res.status(400).json(error);
     });
 });
 
@@ -56,16 +55,20 @@ router.post('/api/venues', isAuthenticated, function(req, res, next) {
     ])
     .then(resultArray => resultArray[0])
     .then(result => {
-      console.log(`New venue created (id: ${result.id}, venue_name: ${result.venue_name})`)
+      console.log(
+        `New venue created (id: ${result.id}, venue_name: ${
+          result.venue_name
+        })`,
+      );
       res.status(200).json(result);
     })
     .catch(error => {
       console.warn(error);
-      res.status(400).json(error)
+      res.status(400).json(error);
     });
 });
 
-router.put('/api/venues/:id', isAuthenticated, function (req, res, next) {
+router.put('/api/venues/:id', isAuthenticated, function(req, res, next) {
   const venueId = req.params.id;
   const venueFieldsToUpdate = req.body;
   knex('venues')
@@ -73,29 +76,29 @@ router.put('/api/venues/:id', isAuthenticated, function (req, res, next) {
     .update({
       ...venueFieldsToUpdate,
     })
-  .then(() => {
-    console.log(`Venue edited (id: ${venueId})`)
-    res.status(200).send();
-  })
-  .catch(error => {
-    console.warn(error);
-    res.status(400).json(error)
-  });
+    .then(() => {
+      console.log(`Venue edited (id: ${venueId})`);
+      res.status(200).send();
+    })
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error);
+    });
 });
 
-router.delete('/api/venues/:id', isAuthenticated, function (req, res, next) {
+router.delete('/api/venues/:id', isAuthenticated, function(req, res, next) {
   const venueId = req.params.id;
   knex('venues')
     .where('id', venueId)
     .del()
-  .then(() => {
-    console.log(`Venue deleted (id: ${venueId})`);
-    res.status(200).send();
-  })
-  .catch(error => {
-    console.warn(error);
-    res.status(400).json(error)
-  });
+    .then(() => {
+      console.log(`Venue deleted (id: ${venueId})`);
+      res.status(200).send();
+    })
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error);
+    });
 });
 
 router.get('/api/productions', function(req, res, next) {
@@ -104,7 +107,7 @@ router.get('/api/productions', function(req, res, next) {
     .then(productions => res.status(200).json(productions))
     .catch(error => {
       console.warn(error);
-      res.status(400).json(error)
+      res.status(400).json(error);
     });
 });
 
@@ -118,7 +121,7 @@ router.get('/api/productions/:id', function(req, res, next) {
     .then(productions => res.status(200).json(productions[0]))
     .catch(error => {
       console.warn(error);
-      res.status(400).json(error)
+      res.status(400).json(error);
     });
 });
 
@@ -137,16 +140,18 @@ router.post('/api/productions', isAuthenticated, function(req, res, next) {
     ])
     .then(resultArray => resultArray[0])
     .then(result => {
-      console.log(`New production created (id: ${result.id}, name: ${result.name})`)
-      res.status(200).json(result)
+      console.log(
+        `New production created (id: ${result.id}, name: ${result.name})`,
+      );
+      res.status(200).json(result);
     })
     .catch(error => {
       console.warn(error);
-      res.status(400).json(error)
+      res.status(400).json(error);
     });
 });
 
-router.put('/api/productions/:id', isAuthenticated, function (req, res, next) {
+router.put('/api/productions/:id', isAuthenticated, function(req, res, next) {
   const productionId = req.params.id;
   const productionFieldsToUpdate = req.body;
   knex('productions')
@@ -154,29 +159,33 @@ router.put('/api/productions/:id', isAuthenticated, function (req, res, next) {
     .update({
       ...productionFieldsToUpdate,
     })
-  .then(() => {
-    console.log(`Production edited (id: ${productionId})`);
-    res.status(200).send();
-  })
-  .catch(error => {
-    console.warn(error);
-    res.status(400).json(error)
-  });
+    .then(() => {
+      console.log(`Production edited (id: ${productionId})`);
+      res.status(200).send();
+    })
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error);
+    });
 });
 
-router.delete('/api/productions/:id', isAuthenticated, function (req, res, next) {
+router.delete('/api/productions/:id', isAuthenticated, function(
+  req,
+  res,
+  next,
+) {
   const productionId = req.params.id;
   knex('productions')
     .where('id', productionId)
     .del()
-  .then(() => {
-    console.log(`Production deleted (id: ${productionId})`);
-    res.status(200).send();
-  })
-  .catch(error => {
-    console.warn(error);
-    res.status(400).json(error)
-  });
+    .then(() => {
+      console.log(`Production deleted (id: ${productionId})`);
+      res.status(200).send();
+    })
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error);
+    });
 });
 
 router.get('/api/shows', function(req, res, next) {
@@ -185,7 +194,7 @@ router.get('/api/shows', function(req, res, next) {
     .then(shows => res.status(200).json(shows))
     .catch(error => {
       console.warn(error);
-      res.status(400).json(error)
+      res.status(400).json(error);
     });
 });
 
@@ -199,7 +208,7 @@ router.get('/api/shows/:id', function(req, res, next) {
     .then(shows => res.status(200).json(shows[0]))
     .catch(error => {
       console.warn(error);
-      res.status(400).json(error)
+      res.status(400).json(error);
     });
 });
 
@@ -217,16 +226,18 @@ router.post('/api/shows', isAuthenticated, function(req, res, next) {
     ])
     .then(resultArray => resultArray[0])
     .then(result => {
-      console.log(`New shohw created (id: ${result.id}, start: ${result.start})`)
+      console.log(
+        `New shohw created (id: ${result.id}, start: ${result.start})`,
+      );
       res.status(200).json(result);
     })
     .catch(error => {
       console.warn(error);
-      res.status(400).json(error)
+      res.status(400).json(error);
     });
 });
 
-router.put('/api/shows/:id', isAuthenticated, function (req, res, next) {
+router.put('/api/shows/:id', isAuthenticated, function(req, res, next) {
   const showId = req.params.id;
   const showFieldsToUpdate = req.body;
   knex('shows')
@@ -234,30 +245,30 @@ router.put('/api/shows/:id', isAuthenticated, function (req, res, next) {
     .update({
       ...showFieldsToUpdate,
     })
-  .then((count) => {
-    console.log(`Show edited (id: ${showId})`);
-    res.status(200).send();
-  })
-  .catch(error => {
-    console.warn(error);
-    res.status(400).json(error)
-  });
+    .then(count => {
+      console.log(`Show edited (id: ${showId})`);
+      res.status(200).send();
+    })
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error);
+    });
 });
 
-router.delete('/api/shows/:id', isAuthenticated, function (req, res, next) {
+router.delete('/api/shows/:id', isAuthenticated, function(req, res, next) {
   const showId = req.params.id;
   const showFieldsToUpdate = req.body;
   knex('shows')
     .where('id', showId)
     .del()
-  .then((count) => {
-    console.log(`Show deleted (id: ${showId})`);
-    res.status(200).send();
-  })
-  .catch(error => {
-    console.warn(error);
-    res.status(400).json(error)
-  });
+    .then(count => {
+      console.log(`Show deleted (id: ${showId})`);
+      res.status(200).send();
+    })
+    .catch(error => {
+      console.warn(error);
+      res.status(400).json(error);
+    });
 });
 
 module.exports = router;
