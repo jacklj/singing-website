@@ -1,9 +1,11 @@
 import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK } from 'react-admin';
 
+const API_URL = '../api';
+
 export default (type, params) => {
   if (type === AUTH_LOGIN) {
     const { username, password } = params;
-    const request = new Request('./api/signin', {
+    const request = new Request(`${API_URL}/signin`, {
       method: 'POST',
       body: JSON.stringify({ username, password }),
       headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -33,7 +35,7 @@ export default (type, params) => {
   }
   if (type === AUTH_CHECK) {
     const token = localStorage.getItem('token');
-    const request = new Request('./api/issignedin', {
+    const request = new Request(`${API_URL}/issignedin`, {
       method: 'POST',
       body: JSON.stringify({ token }),
       headers: new Headers({ 'Content-Type': 'application/json' }),
