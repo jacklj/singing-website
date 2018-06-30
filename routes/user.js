@@ -15,6 +15,7 @@ const signup = (request, response) => {
     .then(() => createUser(user))
     .then(user => {
       delete user.password_digest;
+      console.log(`New account created. username: '${user.username}'`);
       response.status(201).json({ user });
     })
     .catch(err => console.error(err));
@@ -65,6 +66,7 @@ const signin = (request, response) => {
     .then(token => updateUserToken(token, user))
     .then(newUserDetails => {
       // newUserDetails includes id, username and token
+      console.log(`User '${newUserDetails.username}' just logged in.`)
       response.status(200).json(newUserDetails);
     })
     .catch(err => console.error(err));
