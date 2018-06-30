@@ -1,10 +1,10 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var cors = require('cors')
+var cors = require('cors');
 
 const path = require('path');
-require('dotenv').config()
+require('dotenv').config();
 
 const knex = require('./db/knex.js');
 const port = process.env.PORT || 8080;
@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(cors());
 }
 
-http.listen(port, function(){
+http.listen(port, function() {
   console.log(`hello.\nlistening on ${port}.`);
 });
 
@@ -21,9 +21,11 @@ http.listen(port, function(){
 // need to use __dirname so that these paths are correct in Heroku
 const staticDir = path.join(__dirname, 'frontend');
 const blogStaticDir = path.join(__dirname, 'blog', 'public');
-app.use(express.static(staticDir, {
+app.use(
+  express.static(staticDir, {
     extensions: ['html', 'htm'],
-}));
+  }),
+);
 app.use('/blog', express.static(blogStaticDir));
 
 // Serve any static files
@@ -33,13 +35,14 @@ app.get('/admin', function(req, res) {
   res.sendFile(path.join(__dirname, 'admin/build', 'index.html'));
 });
 
-
 // (non-static) routes
 app.use(require('./routes/eventRoutes.js'));
 app.use(require('./routes/contact.js'));
 
 // user authentication
-const User = require('./routes/user.js')
-app.post('/api/signup', User.signup)
-app.post('/api/signin', User.signin)
-app.post('/api/issignedin', User.isAuthenticated, (request, response) => response.status(200).end());
+const User = require('./routes/user.js');
+app.post('/api/signup', User.signup);
+app.post('/api/signin', User.signin);
+app.post('/api/issignedin', User.isAuthenticated, (request, response) =>
+  response.status(200).end(),
+);

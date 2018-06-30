@@ -3,10 +3,10 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 
-router.use(require("body-parser").json())
+router.use(require('body-parser').json());
 
 // POST route from contact form
-router.post('/api/contact', function (req, res) {
+router.post('/api/contact', function(req, res) {
   let mailOpts, smtpTrans;
   smtpTrans = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -14,23 +14,22 @@ router.post('/api/contact', function (req, res) {
     secure: true,
     auth: {
       user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS
-    }
+      pass: process.env.GMAIL_PASS,
+    },
   });
   const from = req.body.name + ' (' + req.body.email + ')';
   mailOpts = {
     from: from,
     to: process.env.GMAIL_USER,
     subject: 'New message from contact form at jacklawrencejones.com',
-    text: `${req.body.name} (${req.body.email}) says: ${req.body.message}`
+    text: `${req.body.name} (${req.body.email}) says: ${req.body.message}`,
   };
-  smtpTrans.sendMail(mailOpts, function (error, response) {
+  smtpTrans.sendMail(mailOpts, function(error, response) {
     if (error) {
       res.send();
-      console.log("message sending error: ", req.body)
-    }
-    else {
-      console.log("Contact form email successfully sent [from " + from + "]");
+      console.log('message sending error: ', req.body);
+    } else {
+      console.log('Contact form email successfully sent [from ' + from + ']');
       res.send();
     }
   });

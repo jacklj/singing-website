@@ -66,7 +66,7 @@ const signin = (request, response) => {
     .then(token => updateUserToken(token, user))
     .then(newUserDetails => {
       // newUserDetails includes id, username and token
-      console.log(`User '${newUserDetails.username}' just logged in.`)
+      console.log(`User '${newUserDetails.username}' just logged in.`);
       response.status(200).json(newUserDetails);
     })
     .catch(err => console.error(err));

@@ -1,10 +1,10 @@
 import {
-    GET_LIST,
-    GET_ONE,
-    CREATE,
-    UPDATE,
-    DELETE,
-    fetchUtils,
+  GET_LIST,
+  GET_ONE,
+  CREATE,
+  UPDATE,
+  DELETE,
+  fetchUtils,
 } from 'react-admin';
 import { stringify } from 'query-string';
 
@@ -17,9 +17,9 @@ const API_URL = '../api';
  * @returns {Object} { url, options } The HTTP request parameters
  */
 const convertDataProviderRequestToHTTP = (type, resource, params) => {
-    switch (type) {
+  switch (type) {
     case GET_LIST: {
-        return { url: `${API_URL}/${resource}` };
+      return { url: `${API_URL}/${resource}` };
     }
     case GET_ONE: {
       return { url: `${API_URL}/${resource}/${params.id}` };
@@ -27,31 +27,31 @@ const convertDataProviderRequestToHTTP = (type, resource, params) => {
     case UPDATE: {
       const token = localStorage.getItem('token');
       const body = { token, ...params.data };
-        return {
-            url: `${API_URL}/${resource}/${params.id}`,
-            options: { method: 'PUT', body: JSON.stringify(body) },
-        };
-      }
+      return {
+        url: `${API_URL}/${resource}/${params.id}`,
+        options: { method: 'PUT', body: JSON.stringify(body) },
+      };
+    }
     case CREATE: {
       const token = localStorage.getItem('token');
       const body = { token, ...params.data };
-        return {
-            url: `${API_URL}/${resource}`,
-            options: { method: 'POST', body: JSON.stringify(body) },
-        };
-      }
+      return {
+        url: `${API_URL}/${resource}`,
+        options: { method: 'POST', body: JSON.stringify(body) },
+      };
+    }
     case DELETE: {
       const token = localStorage.getItem('token');
       const body = { token };
-        return {
-            url: `${API_URL}/${resource}/${params.id}`,
-            options: { method: 'DELETE', body: JSON.stringify(body) },
-        };
-      }
-    default: {
-        throw new Error(`Unsupported fetch action type ${type}`);
-      }
+      return {
+        url: `${API_URL}/${resource}/${params.id}`,
+        options: { method: 'DELETE', body: JSON.stringify(body) },
+      };
     }
+    default: {
+      throw new Error(`Unsupported fetch action type ${type}`);
+    }
+  }
 };
 
 /**
@@ -61,19 +61,24 @@ const convertDataProviderRequestToHTTP = (type, resource, params) => {
  * @param {Object} params The Data Provider request params, depending on the type
  * @returns {Object} Data Provider response
  */
-const convertHTTPResponseToDataProvider = (response, type, resource, params) => {
-    const { headers, json } = response;
-    switch (type) {
+const convertHTTPResponseToDataProvider = (
+  response,
+  type,
+  resource,
+  params,
+) => {
+  const { headers, json } = response;
+  switch (type) {
     case GET_LIST:
-        return {
-            data: json.map(x => x),
-            total: json.length,
-        };
+      return {
+        data: json.map(x => x),
+        total: json.length,
+      };
     case CREATE:
-        return { data: { ...params.data, id: json.id } };
+      return { data: { ...params.data, id: json.id } };
     default:
-        return { data: json };
-    }
+      return { data: json };
+  }
 };
 
 /**
@@ -83,8 +88,13 @@ const convertHTTPResponseToDataProvider = (response, type, resource, params) => 
  * @returns {Promise} the Promise for response
  */
 export default (type, resource, params) => {
-    const { fetchJson } = fetchUtils;
-    const { url, options } = convertDataProviderRequestToHTTP(type, resource, params);
-    return fetchJson(url, options)
-        .then(response => convertHTTPResponseToDataProvider(response, type, resource, params));
+  const { fetchJson } = fetchUtils;
+  const { url, options } = convertDataProviderRequestToHTTP(
+    type,
+    resource,
+    params,
+  );
+  return fetchJson(url, options).then(response =>
+    convertHTTPResponseToDataProvider(response, type, resource, params),
+  );
 };
