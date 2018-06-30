@@ -109,7 +109,7 @@ function isAuthenticated(req, res, next) {
     findByToken(userReq.token)
     .then((userFromDB) => {
       if (userFromDB) { // user with matching token found
-        console.log(`Valid token - user '${userFromDB}' is authenticated`);
+        console.log(`Valid token - user '${userFromDB.username}' is authenticated`);
           delete req.body.token;
           return next(); // hand off to next function in middleware chain (probably the endpoint)
       } else { // no matching token found
