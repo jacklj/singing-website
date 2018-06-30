@@ -32,7 +32,27 @@ export default (type, params) => {
     return Promise.resolve();
   }
   if (type === AUTH_CHECK) {
-    return localStorage.getItem('token') ? Promise.resolve() : Promise.reject();
+    const token = localStorage.getItem('token');
+    const request = new Request('./api/issignedin', {
+      method: 'POST',
+      body: JSON.stringify({ token }),
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+    });
+    return fetch(request)
+      .then(response => {
+        const httpStatus = response.status;
+        if (httpStatus !== 200) {
+          console.warn(response.statusText);
+          localStorage.removeItem('token');
+          return Promise.reject();
+        } else {
+          return Promise.resolve();
+        }
+      })
+      .catch(error => {
+        console.warn(error);
+        return Promise.reject();
+      });
   }
   return Promise.resolve();
 };
