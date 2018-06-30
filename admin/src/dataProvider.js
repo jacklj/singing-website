@@ -25,19 +25,25 @@ const convertDataProviderRequestToHTTP = (type, resource, params) => {
       return { url: `${API_URL}/${resource}/${params.id}` };
     }
     case UPDATE:
+      const token = localStorage.getItem('token');
+      const body = { token, ...params.data };
         return {
             url: `${API_URL}/${resource}/${params.id}`,
-            options: { method: 'PUT', body: JSON.stringify(params.data) },
+            options: { method: 'PUT', body: JSON.stringify(body) },
         };
     case CREATE:
+      const token = localStorage.getItem('token');
+      const body = { token, ...params.data };
         return {
             url: `${API_URL}/${resource}`,
-            options: { method: 'POST', body: JSON.stringify(params.data) },
+            options: { method: 'POST', body: JSON.stringify(body) },
         };
     case DELETE:
+      const token = localStorage.getItem('token');
+      const body = { token };
         return {
             url: `${API_URL}/${resource}/${params.id}`,
-            options: { method: 'DELETE' },
+            options: { method: 'DELETE', body: JSON.stringify(body) },
         };
     default:
         throw new Error(`Unsupported fetch action type ${type}`);
