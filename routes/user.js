@@ -104,25 +104,22 @@ const updateUserToken = (token, user) => {
 
 function isAuthenticated(req, res, next) {
   const userReq = req.body;
-  if(userReq.token && userReq.username) {
+  if(userReq.token) {
     // token must exist and match the correct user
     findByToken(userReq.token)
     .then((userFromDB) => {
       if (userFromDB) { // user with matching token found
-        if (userFromDB.username === userReq.username) {
-          // remove authentication data from request body, so that it doesn't
-          // intefere with the endpoints
-          delete req.body.username;
+        console.log(`Valid token - user '${userFromDB}' is authenticated`);
           delete req.body.token;
           return next(); // hand off to next function in middleware chain (probably the endpoint)
-        } else { // username doesn't match token
-          res.status(401).end();
-        }
       } else { // no matching token found
+        console.log("[401] No matching token found.")
         res.status(401).end();
       }
     });
   } else {
+    // token not  supplied in the request body
+    console.log("[401] Token wasn't present in the request body.")
     res.status(401).end();
   }
 
