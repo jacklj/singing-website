@@ -36,6 +36,7 @@ ul.navigation li {
 
 .event .name {
   font-size: 2.3em;
+  text-decoration: underline;
 }
 .event .name a {
   text-decoration: underline;
