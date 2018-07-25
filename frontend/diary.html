@@ -73,11 +73,14 @@
           const futureEvents = allEvents.filter(function(event) {
             return !moment().isAfter(moment(event.end));
           });
-          futureEvents.sort(reverseChronologicalSort);
-
-          for (let i = 0, len = futureEvents.length; i < len; i++) {
-            const eventElement = createEventElement(futureEvents[i]);
-            eventsContainer.appendChild(eventElement);
+          if (!Array.isArray(futureEvents) || !futureEvents.length) {
+            eventsContainer.innerHTML = `Next season will be announced shortly.`;
+          } else {
+            futureEvents.sort(reverseChronologicalSort);
+            for (let i = 0, len = futureEvents.length; i < len; i++) {
+              const eventElement = createEventElement(futureEvents[i]);
+              eventsContainer.appendChild(eventElement);
+            }
           }
         } else {
           console.warn("error")
