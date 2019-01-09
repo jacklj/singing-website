@@ -2,9 +2,10 @@
   "name": "admin",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "http://www.jacklawrencejones.com/admin",
+  "homepage": "http://www.jacklawrencejones.com/admin",
   "proxy": "http://localhost:8080",
   "dependencies": {
+    "date-fns": "2.0.0-alpha.26",
     "ra-data-json-server": "^2.0.3",
     "react": "^16.4.1",
     "react-admin": "^2.0.3",
