@@ -5,7 +5,7 @@
   "homepage": "http://www.jacklawrencejones.com/admin",
   "proxy": "http://localhost:8080",
   "dependencies": {
-    "date-fns": "2.0.0-alpha.26",
+    "date-fns": "2.0.0-alpha.7",
     "ra-data-json-server": "^2.0.3",
     "react": "^16.4.1",
     "react-admin": "^2.0.3",
